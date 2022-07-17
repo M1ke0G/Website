@@ -1,0 +1,30 @@
+﻿RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteEngine On 
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^index.php$ https://www.losthaven.net$1 [R=301,L]
+
+IndexIgnore *
+
+ErrorDocument 400 /404.php
+ErrorDocument 401 /404.php
+ErrorDocument 403 /404.php
+ErrorDocument 404 /404.php
+ErrorDocument 405 /404.php
+ErrorDocument 408 /404.php
+ErrorDocument 414 /404.php
+ErrorDocument 500 /404.php
+ErrorDocument 502 /404.php
+ErrorDocument 504 /404.php
+ErrorDocument 500 /500.php
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php72” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddType application/x-httpd-ea-php72 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
